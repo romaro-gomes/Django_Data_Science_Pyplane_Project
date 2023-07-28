@@ -1,6 +1,5 @@
 # Intro
 
-That project was basedd in the tutorial of [Pyplane](https://www.youtube.com/watch?v=bLidW4iByqo).
 
 The project was based on the tutorial by [Pyplane](https://www.youtube.com/watch?v=bLidW4iByqo). The main goals were to create a website using data science packages, such as pandas, seaborn, and matplotlib.
 
@@ -10,4 +9,6 @@ However, my code differs from Pyplane's approach as I used Bootstrap for HTML in
 
 I thoroughly enjoyed working on this project and found it to be a valuable learning experience.
 
-![The Data Web Site](djangoDataScience.gif)
+<p align="center">
+  <img src="djangoDataScience.gif" alt="Project Video">
+</p>
