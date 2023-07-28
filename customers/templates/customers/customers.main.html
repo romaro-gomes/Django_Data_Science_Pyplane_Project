@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Costumers Data
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Correlation: {{ corr }}</h1>
+    
+    {% if graphx  %}
+    <div class="container d-flex justify-content-center align-items-center">
+        <img src="data:image/png;base64, {{ graphx | safe }}" alt="">
+    </div>
+    {% endif %}
+        
+{% endblock content %}
+    
+    

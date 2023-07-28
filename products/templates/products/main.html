@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Product List
+{% endblock title %}
+
+
+{% block content %}
+
+<div>
+    {% if error_message %}
+
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% else %}
+    {{ df | safe }}
+    {% endif %}
+
+
+</div>
+<hr>
+<div style="justify-content:center;">
+
+
+    {% if request.POST %}
+    {% if error_graph %}
+    <div class="alert alert-success" role="alert">
+        {{ error_graph }}
+    </div>
+    {% else %}
+    {% if graph %}
+
+    <div class="container d-flex justify-content-center align-items-center">
+
+        <div>
+            <img src="data:image/png;base64, {{ graph | safe }}" alt="Imagem" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+
+
+    {% endif %}
+
+</div>
+<div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden">
+        <select class="form-select" aria-label="Default select example" name="sales">
+            <option selected>Chose a plot type: </option>
+            <option value="bar">Bar Plot</option>
+            <option value="line">Line Plot</option>
+            <option value="count">Count Plote</option>
+        </select>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <label for="">Date From:</label>
+                <input type="date" name="date_from" class="form-control">
+            </div>
+            <div class="col">
+                <label for="">Date To:</label>
+                <input type="date" class="form-control" name="date_to">
+            </div>
+        </div>
+        <br>
+        <div class="container d-flex justify-content-center center"></div>
+        <button class="btn btn-primary" type="submit">Select</button>
+        <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            See Summary
+        </button>
+        <a href="{% url 'add_purchase_view' %}" type="button" class="btn btn-success">Add Records</a>
+</div>
+</form>
+<br>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Price Data</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Metric</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Average</td>
+                            <td>{{ price.mean | floatformat }}</td>
+                        </tr>
+                        <tr>
+                            <td>Median</td>
+                            <td>{{ price.median | floatformat }}</td>
+                        </tr>
+                        <tr>
+                            <td>Min</td>
+                            <td>{{ price.min | floatformat }}</td>
+                        </tr>
+                        <tr>
+                            <td>Max</td>
+                            <td>{{ price.max | floatformat }}</td>
+                        </tr>
+                        <tr>
+                            <td>Standerd Deviation</td>
+                            <td>{{ price.std | floatformat }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>              
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock content %}

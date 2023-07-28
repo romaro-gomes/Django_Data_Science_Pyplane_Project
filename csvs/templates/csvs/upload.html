@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Upload
+{% endblock title %}
+
+
+
+{% if sucess_message  %}
+    <div class="alert alert-success" role="alert">
+        {{ sucess_message }}
+    </div>
+{% elif error_message %}
+    <div class="alert alert-success" role="alert"></div>
+        {{ error_message }}
+    </div>
+{% endif %}
+    
+{% block content %}
+    <h1> Enter with CSV </h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+            {{form|crispy}}
+        
+        <button type="submit" class="btn btn-success"> Upload Data </button>
+    </form>
+{% endblock content %}
+    

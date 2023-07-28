@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Sales
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Sales</h1>
+    
+    {% if graph %}
+        <img src="data:image/png;base64, {{ graph | safe}}" alt="">
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+      </div>
+    {% endif %}
+        
+{% endblock content %}
+    
+    

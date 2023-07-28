@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Add Purchase
+{% endblock title %}
+    
+{% if user.is_authenticated %}
+    
+{% block content %}
+    <h1> Hi {{ user.username }}.New Sales?</h1>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <a href="{% url 'add_purchase_view' %}" class="btn btn-success" type="submit">ADD</a>
+    </form>
+{% endblock content %}
+{% else %}
+<div class="alert alert-danger" role="alert">
+    You must log in
+  </div>
+{% endif%}
+    
